@@ -8,15 +8,44 @@ import (
 
 // FilterAndSort filters numbers greater than or equal to the threshold and sorts them.
 func FilterAndSort(nums []int, threshold int) []int {
-	// TODO: Implement this function
-	return nil // Placeholder return
+	var flitered []int
+	if len(nums) == 0 {
+		return flitered
+	}
+
+	for _, num := range nums {
+		if num >= threshold {
+			flitered = append(flitered, num)
+		}
+	}
+
+	sort.Ints(flitered)
+
+	return flitered
 }
 
 // FindMostFrequent finds the most frequent word in a slice of strings.
 // Returns an error if the slice is empty.
 func FindMostFrequent(words []string) (string, error) {
-	// TODO: Implement this function
-	return "", errors.New("not implemented") // Placeholder return
+	if len(words) == 0 {
+		return "", errors.New("slice is empty")
+	}
+
+	wordCount := make(map[string]int)
+	for _, word := range words {
+		wordCount[word]++
+	}
+
+	var mostFrequent string
+	maxCount := 0
+	for word, count := range wordCount {
+		if count > maxCount {
+			mostFrequent = word
+			maxCount = count
+		}
+	}
+
+	return mostFrequent, nil
 }
 
 func main() {
